@@ -25,7 +25,7 @@ def get_retriever():
     # Base retriever — fetch top 5 relevant chunks
     base_retriever = vectorstore.as_retriever(
         search_type="similarity",
-        search_kwargs={"k": 10}
+        search_kwargs={"k": 3}
     )
 
     # Context compression — removes irrelevant parts from chunks
