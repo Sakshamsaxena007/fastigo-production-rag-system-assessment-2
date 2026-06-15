@@ -1,0 +1,40 @@
+User
+  │
+  ▼
+Streamlit UI
+  │
+  ▼
+Document Upload Layer
+(PDF / HTML / CSV)
+  │
+  ▼
+Document Loaders
+(PyPDFLoader, BSHTMLLoader, CSVLoader)
+  │
+  ▼
+Chunking Layer
+(RecursiveCharacterTextSplitter)
+  │
+  ▼
+Embedding Model
+(all-MiniLM-L6-v2)
+  │
+  ▼
+Chroma Vector Database
+  │
+  ▼
+Retriever
+(Similarity Search + Context Compression)
+  │
+  ▼
+Groq LLM
+(Llama 3.1)
+  │
+  ▼
+Answer Generation
+  │
+  ▼
+Source Citations + Session Memory
+  │
+  ▼
+User Response
