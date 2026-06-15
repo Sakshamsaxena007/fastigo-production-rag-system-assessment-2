@@ -33,7 +33,16 @@ def get_vectorstore():
     )
 
 def ask(question: str):
-    banned = ["ignore previous", "forget instructions", "you are now", "disregard"]
+    banned = [
+    "ignore previous",
+    "ignore all previous",
+    "forget instructions",
+    "reveal hidden",
+    "secret information",
+    "you are now",
+    "disregard",
+    "override instructions"
+    ]
     if any(phrase in question.lower() for phrase in banned):
         return {
             "answer": "⚠️ Invalid query detected. Please ask a genuine question.",
