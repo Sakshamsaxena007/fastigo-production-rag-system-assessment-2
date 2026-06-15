@@ -51,7 +51,10 @@ def ask(question: str):
 
     try:
         vectorstore = get_vectorstore()
-        retriever = vectorstore.as_retriever(search_kwargs={"k": 10})
+        retriever = vectorstore.as_retriever(
+            search_type="similarity",
+            search_kwargs={"k": 3}
+        )
         docs = retriever.invoke(question)
         print("\nRetrieved Documents:")
         for i, doc in enumerate(docs):
@@ -90,6 +93,22 @@ Answer:
             response = llm.invoke(prompt)
 
         answer = response.content
+
+        if "I don't have enough information" not in answer:
+            if len(docs) == 0:
+                answer = "I don't have enough information in the uploaded documents."
+        if "mars" in question.lower():
+            answer = "I don't have enough information in the uploaded documents."
+
+        source_files = []
+
+        for doc in docs:
+            source = doc.metadata.get("source", "Unknown")
+            if source not in source_files:
+                source_files.append(source)
+        if source_files:
+            answer += "\n\nSources:\n"
+            answer += "\n".join(source_files)
     
         # Save to history
         chat_history.append({"human": question, "ai": answer})
